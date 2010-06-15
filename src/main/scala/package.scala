@@ -22,11 +22,10 @@ package object scalaguice {
         import com.google.inject.util.Types
         m.typeArguments match {
             case Nil => toWrapper(m.erasure)
-            case args => Types.newParameterizedType(m.erasure, args.map(typeOf(_)):_*)
-/*m.erasure match {
+            case args => m.erasure match {
                 case c:Class[_] if c.getEnclosingClass == null => Types.newParameterizedType(c, args.map(typeOf(_)):_*)
                 case c:Class[_] => Types.newParameterizedTypeWithOwner(c.getEnclosingClass, c, args.map(typeOf(_)):_*)
-            }*/
+            }
         }
     }
     
