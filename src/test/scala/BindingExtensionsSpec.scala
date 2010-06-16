@@ -5,7 +5,7 @@ import org.scalatest.matchers.ShouldMatchers
 
 import com.google.inject._
 
-class ScalaBindingExtensionsSpec extends WordSpec with ShouldMatchers {
+class BindingExtensionsSpec extends WordSpec with ShouldMatchers {
   
   import BindingExtensions._
 
