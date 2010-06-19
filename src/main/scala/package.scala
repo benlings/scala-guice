@@ -41,21 +41,4 @@ package object scalaguice {
         classManifest[T].erasure.asInstanceOf[AnnotationClass]
     }
 
-    implicit def typeLiteralToKey[T](t: TypeLiteral[T]) = Key.get(t)
-    
-    implicit def toKey[T](t: TypeLiteral[T]) = new {
-        def annotatedWith(annotation: JAnnotation): Key[T] = Key.get(t, annotation)
-        def annotatedWith[TAnn <: JAnnotation : Manifest]:Key[T] = 
-            Key.get(t, annotation[TAnn])
-    }
-        
-    def key[T : Manifest]: Key[T] = Key.get(typeLiteral[T])
-    
-    def key[T : Manifest](annotation: JAnnotation): Key[T] = {
-        typeLiteral[T].annotatedWith(annotation)
-    }
-    
-    def key[T : Manifest, TAnn <: JAnnotation : Manifest]: Key[T] = {
-        typeLiteral[T].annotatedWith[TAnn]
-    }
 }
