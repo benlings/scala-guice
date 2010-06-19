@@ -33,6 +33,9 @@ class TypeLiteralSpec extends Spec with ShouldMatchers {
       typeLiteral[List[Outer.Inner]] should equal (new TypeLiteral[List[Outer.Inner]] {})
     }
     
+    it("should handle type parameters that are arrays") {
+      typeLiteral[Array[Int]] should equal (new TypeLiteral[Array[Int]] {})
+    }
 
   }
 
