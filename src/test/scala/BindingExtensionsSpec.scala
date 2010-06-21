@@ -40,6 +40,20 @@ class BindingExtensionsSpec extends WordSpec with ShouldMatchers {
       } getInstance(new Key[Outer.Gen[String]] {})
       inst.get should equal ("String")
     }
+    
+    "allow binding to provider using type parameter" in { 
+      val inst = Guice createInjector module { binder =>
+          binder.bindType[Gen[String]].toProviderType[GenStringProvider]
+      } getInstance(new Key[Gen[String]] {})
+      inst.get should equal ("String")
+    }
+    
+    "allow binding to provider of subtype using type parameter" in { 
+      val inst = Guice createInjector module { binder =>
+          binder.bindType[Gen[String]].toProviderType[CProvider]
+      } getInstance(new Key[Gen[String]] {})
+      inst.get should equal ("String")
+    } 
 
   }
 
