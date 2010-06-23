@@ -6,7 +6,7 @@ class ScalaGuice(info: ProjectInfo) extends DefaultProject(info) {
   val scalaToolsSnapshots = "Scala-Tools Maven2 Snapshots Repository" at "http://scala-tools.org/repo-snapshots"
 
   // Dependencies
-  val scalatest = "org.scalatest" % "scalatest" % "1.2-for-scala-2.8.0.RC5-SNAPSHOT"
+  val scalatest = "org.scalatest" % "scalatest" % "1.2-for-scala-2.8.0.RC6-SNAPSHOT"
   val guice2 = "com.google.inject" % "guice" % "2.0"
 
 }
