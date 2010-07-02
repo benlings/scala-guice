@@ -29,6 +29,11 @@ package object scalaguice {
         }
     }
     
+    /**
+     * Create a [[com.google.inject.TypeLiteral]] from a [[scala.Manifest]].
+     * Subtypes of [[scala.AnyVal]] will be converted to their corresponding
+     * Java wrapper classes.
+     */
     def typeLiteral[T : Manifest]: TypeLiteral[T] = {
         TypeLiteral.get(typeOf[T]).asInstanceOf[TypeLiteral[T]]
     }
@@ -37,6 +42,9 @@ package object scalaguice {
     
     type AnnotationClass[T <: JAnnotation] = Class[T]
     
+    /**
+     * Get the class for a Java Annotation using a [[scala.Manifest]].
+     */
     def annotation[T <: JAnnotation : ClassManifest]: AnnotationClass[T] = {
         classManifest[T].erasure.asInstanceOf[AnnotationClass[T]]
     }

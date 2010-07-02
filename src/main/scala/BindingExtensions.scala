@@ -2,6 +2,26 @@ package uk.me.lings.scalaguice
 
 import com.google.inject._
 
+/**
+ * Extensions for Guice's binding DSL.
+ * These allow using a type parameter instead of <code>classOf[Foo]}</code>
+ * or <code>new TypeLiteral[Bar[Foo]] {}</code>. The extra methods are
+ * named as those in the normal binding DSL suffixed with <code>Type</code>.
+ * 
+ * For example, instead of
+ * {{{
+ * binder.bind(new TypeLiteral[Bar[Foo]]{}).to(classOf[FooBarImpl])
+ * }}}
+ * use
+ * {{{
+ * import BindingExtensions._
+ * binder.bindType[Bar[Foo]].toType[FooImpl]
+ * }}}
+ *
+ * '''Note''' This syntax allows binding to and from generic types.
+ * It doesn't currently allow bindings between wildcard types because the
+ * Scala compiler doesn't currently create manifests for wildcards.
+ */
 object BindingExtensions {
     
     class ScalaBinder(b:Binder) {
