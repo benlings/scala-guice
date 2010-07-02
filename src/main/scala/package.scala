@@ -35,10 +35,10 @@ package object scalaguice {
     
     import java.lang.annotation.{Annotation => JAnnotation}
     
-    type AnnotationClass = Class[_ <: JAnnotation]
+    type AnnotationClass[T <: JAnnotation] = Class[T]
     
-    def annotation[T <: JAnnotation : ClassManifest]: AnnotationClass = {
-        classManifest[T].erasure.asInstanceOf[AnnotationClass]
+    def annotation[T <: JAnnotation : ClassManifest]: AnnotationClass[T] = {
+        classManifest[T].erasure.asInstanceOf[AnnotationClass[T]]
     }
 
 }
