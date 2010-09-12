@@ -20,7 +20,7 @@ import com.google.inject._
  *
  * '''Note''' This syntax allows binding to and from generic types.
  * It doesn't currently allow bindings between wildcard types because the
- * Scala compiler doesn't currently create manifests for wildcards.
+ * manifests for wildcard types don't provide access to type bounds.
  */
 object BindingExtensions {
     
