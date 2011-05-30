@@ -56,7 +56,7 @@ object BindingExtensions {
 
     class ScalaLinkedBindingBuilder[T](b: LinkedBindingBuilder[T]) {
         def toType[TImpl <: T : Manifest] = b to typeLiteral[TImpl]
-        def toProviderType[TProvider <: Provider[_ <: T] : ClassManifest] = b toProvider classManifest[TProvider].erasure.asInstanceOf[Class[TProvider]]
+        def toProviderType[TProvider <: Provider[_ <: T] : Manifest] = b toProvider typeLiteral[TProvider]
     }
     
     implicit def enrichLinkedBinding[T](b: LinkedBindingBuilder[T]) = 
