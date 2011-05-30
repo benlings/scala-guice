@@ -16,9 +16,11 @@
 package uk.me.lings.scalaguice
 package binder
 
+import javax.inject.{Provider => JXProvider}
 import com.google.inject._
 import com.google.inject.binder._
 import java.lang.annotation.{Annotation => JAnnotation}
+import java.lang.reflect.Constructor
 
 /**
  * Proxy for [[com.google.inject.binder.ScopedBindingBuilder]]
@@ -45,9 +47,12 @@ trait LinkedBindingBuilderProxy[T] extends LinkedBindingBuilder[T]
   def to(implementation: TypeLiteral[_ <: T]) = self to implementation
   def to(targetKey: Key[_ <: T]) = self to targetKey
   def toInstance(instance: T) = self toInstance instance
+  def toConstructor[S <: T](constructor: Constructor[S], constructorType: TypeLiteral[_ <: S]) = self.toConstructor(constructor, constructorType)
+  def toConstructor[S <: T](constructor: Constructor[S]) = self toConstructor constructor
   def toProvider(provider: Provider[_ <: T]) = self toProvider provider
-  def toProvider(provider: Class[_ <: Provider[_ <: T]]) = self toProvider provider
-  def toProvider(providerKey: Key[_ <: Provider[_ <: T]]) = self toProvider providerKey
+  def toProvider(provider: Class[_ <: JXProvider[_ <: T]]) = self toProvider provider
+  def toProvider(providerType: TypeLiteral[_ <: JXProvider[_ <: T]]) = self toProvider providerType
+  def toProvider(providerKey: Key[_ <: JXProvider[_ <: T]]) = self toProvider providerKey
 }
 
 /**

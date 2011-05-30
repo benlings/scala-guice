@@ -20,7 +20,7 @@ class ScalaGuice(info: ProjectInfo) extends DefaultProject(info) {
   // Repositories
 
   // Dependencies
-  val guice2 = "com.google.inject" % "guice" % "2.0"
+  val guice2 = "com.google.inject" % "guice" % "3.0"
   val TwoPointEight = """2\.8\.\d""".r
   val TwoPointNine = """2\.9\.[\d.-]+""".r
 
