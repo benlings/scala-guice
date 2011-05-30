@@ -15,6 +15,8 @@
  */
 package uk.me.lings.scalaguice
 
+import com.google.inject.Provider
+
 object Outer {
   trait A
   class B extends A
@@ -30,6 +32,10 @@ object Outer {
 trait A
 class B extends A
 
+class BProvider extends Provider[B] {
+  def get = new B
+}
+
 trait Gen[T] {
   def get: T
 }
@@ -37,8 +43,6 @@ trait Gen[T] {
 class C extends Gen[String] {
   def get = "String"
 }
-
-import com.google.inject.Provider
 
 class GenStringProvider extends Provider[Gen[String]] {
   def get = new C

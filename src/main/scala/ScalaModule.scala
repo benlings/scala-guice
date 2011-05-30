@@ -77,6 +77,9 @@ object ScalaModule {
     def to[TImpl <: T : Manifest] = new ScalaScopedBindingBuilder {
       val self = outer.self to typeLiteral[TImpl]
     }
+    def toProvider[TProvider <: Provider[_ <: T] : ClassManifest] = new ScalaScopedBindingBuilder {
+      val self = outer.self toProvider classManifest[TProvider].erasure.asInstanceOf[Class[TProvider]]
+    }
   }
 
   trait ScalaAnnotatedBindingBuilder[T] extends ScalaLinkedBindingBuilder[T]
