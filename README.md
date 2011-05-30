@@ -6,14 +6,16 @@ Features:
 * Binding DSL extensions using type parameters to specify types
 * ScalaModule trait including the above binding DSL extensions
 
-      class MyModule extends AbstractModule with ScalaModule {
-        def configure {
-          bind[Service].to[ServiceImpl].in[Singleton]
-          bind[CreditCardPaymentService]
-          bind[Bar[Foo]].to[FooBarImpl]
-          bind[PaymentService].to[CreditCardPaymentService]
-        }
-      }
+```scala
+  class MyModule extends AbstractModule with ScalaModule {
+	def configure {
+	  bind[Service].to[ServiceImpl].in[Singleton]
+	  bind[CreditCardPaymentService]
+	  bind[Bar[Foo]].to[FooBarImpl]
+	  bind[PaymentService].to[CreditCardPaymentService]
+	}
+  }
+```
 
 Future:
 
