@@ -15,6 +15,7 @@
  */
 package uk.me.lings.scalaguice
 
+import javax.inject.{Provider => JXProvider}
 import com.google.inject._
 
 /**
@@ -56,7 +57,7 @@ object BindingExtensions {
 
     class ScalaLinkedBindingBuilder[T](b: LinkedBindingBuilder[T]) {
         def toType[TImpl <: T : Manifest] = b to typeLiteral[TImpl]
-        def toProviderType[TProvider <: Provider[_ <: T] : Manifest] = b toProvider typeLiteral[TProvider]
+        def toProviderType[TProvider <: JXProvider[_ <: T] : Manifest] = b toProvider typeLiteral[TProvider]
     }
     
     implicit def enrichLinkedBinding[T](b: LinkedBindingBuilder[T]) = 
