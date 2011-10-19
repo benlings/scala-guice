@@ -15,6 +15,7 @@
  */
 package uk.me.lings.scalaguice
 
+import javax.inject.{Provider => JXProvider}
 import com.google.inject._
 import binder._
 
@@ -77,7 +78,7 @@ object ScalaModule {
     def to[TImpl <: T : Manifest] = new ScalaScopedBindingBuilder {
       val self = outer.self to typeLiteral[TImpl]
     }
-    def toProvider[TProvider <: Provider[_ <: T] : Manifest] = new ScalaScopedBindingBuilder {
+    def toProvider[TProvider <: JXProvider[_ <: T] : Manifest] = new ScalaScopedBindingBuilder {
       val self = outer.self toProvider typeLiteral[TProvider]
     }
   }
