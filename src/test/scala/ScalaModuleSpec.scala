@@ -51,6 +51,15 @@ class ScalaModuleSpec extends WordSpec with ShouldMatchers {
       Guice.createInjector(module).getInstance(classOf[A])
     }
 
+    "allow binding to provider of subtype using type parameter" in {
+      val module = new AbstractModule with ScalaModule {
+        def configure = {
+          bind[Gen[String]].toProvider[CProvider]
+        }
+      }
+      Guice.createInjector(module).getInstance(new Key[Gen[String]] {})
+    }
+
     "allow binding in scope using a type parameter" in {
       val module = new AbstractModule with ScalaModule {
         def configure = {
